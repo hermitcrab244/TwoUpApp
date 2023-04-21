@@ -1,0 +1,24 @@
+#title {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .scoreboard {
+    flex: 1;
+    align-self: flex-start;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+
+  .game {
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
+    margin-right: 2%;
+  }
+}

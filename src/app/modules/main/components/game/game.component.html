@@ -1,0 +1,38 @@
+<mat-card class="display-card">
+  <mat-card-header> </mat-card-header>
+  <mat-card-content id="game-screen">
+    <div>
+      <p>
+        <b
+          ><span>{{ gameMessage }}</span></b
+        >
+      </p>
+    </div>
+    <div id="coin-images">
+      <img [src]="coin1" class="spin" />
+      <img [src]="coin2" class="spin" />
+    </div>
+    <div class="button-container">
+      <div id="selection-buttons">
+        <button
+          mat-raised-button
+          id="select-heads"
+          (click)="playerSelected(heads)"
+        >
+          Heads
+        </button>
+        <button
+          mat-raised-button
+          id="select-tails"
+          (click)="playerSelected(tails)"
+        >
+          Tails
+        </button>
+      </div>
+      <div id="flip-button">
+        <button mat-raised-button (click)="playRound()">Toss Coins</button>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-footer></mat-card-footer>
+</mat-card>

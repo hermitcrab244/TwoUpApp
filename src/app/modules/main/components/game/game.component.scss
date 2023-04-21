@@ -1,0 +1,70 @@
+.display-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+#game-screen {
+  text-align: center;
+}
+
+#coin-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  img {
+    margin: 5px;
+    max-width: 33%;
+    background-color: transparent;
+  }
+}
+
+.button-container {
+  margin-top: 1%;
+  button {
+    width: 20%;
+    margin: 1%;
+  }
+}
+
+#selection-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+#flip-button {
+  display: flex;
+  justify-content: center;
+}
+
+// .spin {
+//   animation-name: spin;
+//   animation-duration: 6s;
+//   animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+//   animation-iteration-count: 10;
+// }
+
+// @keyframes spin {
+//   0% {
+//     transform: rotate(0deg);
+//     animation-timing-function: ease-out;
+//   }
+//   25% {
+//     transform: rotate(90deg);
+//     animation-timing-function: ease-in;
+//   }
+//   50% {
+//     transform: rotate(180deg);
+//     animation-timing-function: ease-out;
+//   }
+//   75% {
+//     transform: rotate(270deg);
+//     animation-timing-function: ease-in;
+//   }
+//   100% {
+//     transform: rotate(360deg);
+//     animation-timing-function: ease-out;
+//   }
+// }
