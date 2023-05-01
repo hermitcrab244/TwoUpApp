@@ -1,11 +1,16 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
 })
-export class GameComponent {
+export class GameComponent implements OnInit {
+  constructor() {}
+
+  ngOnInit() {}
+
   heads = 'Heads';
   tails = 'Tails';
 
@@ -15,6 +20,9 @@ export class GameComponent {
   coin2 = this.coinTails;
   playerChoice = '';
   gameMessage = '';
+  isAnimating = false;
+  tossDisabled: boolean = true;
+  selectDisabled: boolean = false;
 
   @Output() gameResults = new EventEmitter<{
     results: string;
@@ -24,6 +32,8 @@ export class GameComponent {
   playerSelected(choice: string) {
     this.playerChoice = choice;
     this.gameMessage = 'You guessed ' + this.playerChoice;
+    this.tossDisabled = false;
+    this.selectDisabled = true;
   }
 
   playRound() {
@@ -42,20 +52,26 @@ export class GameComponent {
       results = 'tailsOdds';
     }
 
-    this.flipCoins(results);
+    this.flipAnimation();
 
-    if (results === this.playerChoice) {
-      this.gameMessage = 'Flip was ' + results + ', you guessed correct!';
-      outcome = 'win';
-    } else if (results === 'headsOdds' || results === 'tailsOdds') {
-      this.gameMessage = 'Flip was Odd, try again!';
-    } else {
-      this.gameMessage =
-        'Flip was ' + results + ', you guessed wrong! Try again!';
-      outcome = 'lose';
-    }
+    setTimeout(() => {}, 6000);
 
-    this.sendResults(results, outcome);
+    setTimeout(() => {
+      this.flipCoins(results);
+
+      if (results === this.playerChoice) {
+        this.gameMessage = 'Flip was ' + results + ', you guessed correct!';
+        outcome = 'win';
+      } else if (results === 'headsOdds' || results === 'tailsOdds') {
+        this.gameMessage = 'Flip was Odd, try again!';
+      } else {
+        this.gameMessage =
+          'Flip was ' + results + ', you guessed wrong! Try again!';
+        outcome = 'lose';
+      }
+
+      this.sendResults(results, outcome);
+    }, 2000);
   }
 
   flipCoins(results: string) {
@@ -79,10 +95,20 @@ export class GameComponent {
       default:
         break;
     }
+
+    this.tossDisabled = true;
+    this.selectDisabled = false;
   }
 
   sendResults(results: string, outcome: string) {
     console.log('This works');
     this.gameResults.emit({ results: results, outcome: outcome });
+  }
+
+  flipAnimation() {
+    this.isAnimating = true;
+    setTimeout(() => {
+      this.isAnimating = false;
+    }, 2000);
   }
 }

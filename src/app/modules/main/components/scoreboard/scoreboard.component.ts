@@ -17,11 +17,8 @@ export class ScoreboardComponent implements OnChanges {
   headsCount = 0;
   tailsCount = 0;
   oddsCount = 0;
-  test = this.results + this.outcome;
 
   ngOnChanges() {
-    this.test = this.results + ' ' + this.outcome;
-
     if (this.outcome === 'win') {
       this.Score++;
     }

@@ -9,8 +9,16 @@
       </p>
     </div>
     <div id="coin-images">
-      <img [src]="coin1" class="spin" />
-      <img [src]="coin2" class="spin" />
+      <img
+        [src]="coin1"
+        class="coin"
+        [ngClass]="{ 'coin-flip': isAnimating }"
+      />
+      <img
+        [src]="coin2"
+        class="coin"
+        [ngClass]="{ 'coin-flip': isAnimating }"
+      />
     </div>
     <div class="button-container">
       <div id="selection-buttons">
@@ -18,6 +26,7 @@
           mat-raised-button
           id="select-heads"
           (click)="playerSelected(heads)"
+          [disabled]="selectDisabled"
         >
           Heads
         </button>
@@ -25,12 +34,19 @@
           mat-raised-button
           id="select-tails"
           (click)="playerSelected(tails)"
+          [disabled]="selectDisabled"
         >
           Tails
         </button>
       </div>
       <div id="flip-button">
-        <button mat-raised-button (click)="playRound()">Toss Coins</button>
+        <button
+          mat-raised-button
+          (click)="playRound()"
+          [disabled]="tossDisabled"
+        >
+          Toss Coins
+        </button>
       </div>
     </div>
   </mat-card-content>
