@@ -6,12 +6,11 @@ import { Component, Input, OnChanges } from '@angular/core';
   styleUrls: ['./scoreboard.component.scss'],
 })
 export class ScoreboardComponent implements OnChanges {
-  @Input()
-  results: string = '';
-  @Input()
-  outcome: string = '';
+  @Input() results: string = '';
+  @Input() outcome: string = '';
+  @Input() name: string = '';
 
-  playerName = 'Michael';
+  playerName = this.name;
   Score = 0;
   Choice = '';
   headsCount = 0;

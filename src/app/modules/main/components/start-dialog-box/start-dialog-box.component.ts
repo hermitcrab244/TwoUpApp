@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -8,22 +8,28 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./start-dialog-box.component.scss'],
 })
 export class StartDialogBoxComponent implements OnInit {
-  form = new FormGroup({});
+  @Output() playerName = new EventEmitter<string>();
+
+  form: FormGroup;
+  name!: string;
 
   constructor(
     public dialogRef: MatDialogRef<StartDialogBoxComponent>,
-    private fb: FormBuilder
+    private formBuilder: FormBuilder
   ) {
-    this.form = this.fb.group({
-      name: ['', Validators.required],
-      option: ['', Validators.required],
+    this.form = formBuilder.group({
+      name: ['', [Validators.required]],
+      theme: ['', [Validators.required]],
     });
   }
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
-  onPlay(): void {
+  onPlay() {
     if (this.form.valid) {
+      this.name = this.form.get('name')?.value;
+      this.playerName.emit(this.name);
+      console.log('Dialog check: ' + this.name);
       this.dialogRef.close();
     }
   }

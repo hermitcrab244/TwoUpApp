@@ -6,6 +6,7 @@ import { ScoreboardComponent } from './components/scoreboard/scoreboard.componen
 import { HeaderComponent } from './components/header/header.component';
 import { MaterialModule } from '../shared/material.module';
 import { StartDialogBoxComponent } from './components/start-dialog-box/start-dialog-box.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { StartDialogBoxComponent } from './components/start-dialog-box/start-dia
     HeaderComponent,
     StartDialogBoxComponent,
   ],
-  imports: [CommonModule, MaterialModule],
+  imports: [CommonModule, MaterialModule, ReactiveFormsModule, FormsModule],
   exports: [MainPageComponent, StartDialogBoxComponent],
 })
 export class MainModule {}

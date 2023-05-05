@@ -1,28 +1,32 @@
 <div>
   <h2 mat-dialog-title id="title">Welcome to Two-Up</h2>
   <div mat-dialog-content>
-    <form>
-      <mat-form-field>
-        <mat-label>Enter Name</mat-label>
-        <input
-          matInput
-          placeholder="Enter name"
-          formControlName="name"
-          required
-        />
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Select theme option</mat-label>
-        <mat-select formControlName="option" required>
-          <mat-option value="1">1</mat-option>
-          <mat-option value="2">2</mat-option>
-          <mat-option value="3">3</mat-option>
-        </mat-select>
-      </mat-form-field>
+    <form [formGroup]="form">
+      <div>
+        <mat-form-field>
+          <mat-label>Enter Name</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Select theme option</mat-label>
+          <mat-select formControlName="theme">
+            <mat-option value="1">1</mat-option>
+            <mat-option value="2">2</mat-option>
+            <mat-option value="3">3</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </form>
   </div>
   <div mat-dialog-actions>
-    <button mat-raised-button (click)="onPlay()" [disabled]="!form.valid">
+    <button
+      mat-raised-button
+      type="submit"
+      (click)="onPlay()"
+      [disabled]="!form.valid"
+    >
       Play
     </button>
   </div>
