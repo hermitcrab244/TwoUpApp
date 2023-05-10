@@ -10,7 +10,6 @@ export class ScoreboardComponent implements OnChanges {
   @Input() outcome: string = '';
   @Input() name: string = '';
 
-  playerName = this.name;
   Score = 0;
   Choice = '';
   headsCount = 0;

@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { StartDialogBoxComponent } from '../../components/start-dialog-box/start-dialog-box.component';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-main-page',
@@ -14,8 +15,6 @@ import { StartDialogBoxComponent } from '../../components/start-dialog-box/start
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit {
-  @Output() sendPlayerName = new EventEmitter<string>();
-
   dialogRef!: MatDialogRef<StartDialogBoxComponent>;
 
   constructor(public dialog: MatDialog) {}
@@ -23,16 +22,15 @@ export class MainPageComponent implements OnInit {
   results!: string;
   outcome!: string;
   name!: string;
+  themeSelect!: string;
 
   ngOnInit() {
     this.dialogRef = this.dialog.open(StartDialogBoxComponent);
 
-    this.dialogRef.afterClosed().subscribe(() => {
-      this.dialogRef.componentInstance.playerName.subscribe((name: string) => {
-        this.name = name;
-        console.log('Parent check: ' + name);
-        this.sendPlayerName.emit(this.name);
-      });
+    this.dialogRef.afterClosed().subscribe((result: FormGroup) => {
+      this.name = result.get('name')?.value;
+      this.themeSelect = result.get('theme')?.value;
+      console.log(this.themeSelect);
     });
   }
 

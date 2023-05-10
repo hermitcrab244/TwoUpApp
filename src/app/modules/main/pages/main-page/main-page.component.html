@@ -1,20 +1,36 @@
-<div>
-  <app-header></app-header>
-</div>
-<div>
-  <h1 id="title">Two-up Game</h1>
-</div>
-<div class="container">
-  <div class="scoreboard">
-    <app-scoreboard
-      [results]="this.results"
-      [outcome]="this.outcome"
-      [name]="this.name"
-    ></app-scoreboard>
+<div
+  [ngClass]="{
+    light: themeSelect === 'light',
+    dark: themeSelect === 'dark',
+    green: themeSelect === 'green',
+    orange: themeSelect === 'orange',
+    blue: themeSelect === 'blue'
+  }"
+>
+  <div class="spacer">
+    <button mat-fab extended>
+      <mat-icon>logout</mat-icon>
+      End Game
+    </button>
   </div>
-  <div class="game">
-    <app-game
-      (gameResults)="sendResults($event.results, $event.outcome)"
-    ></app-game>
+
+  <div>
+    <h1 id="title">Two-up Game</h1>
+  </div>
+  <div class="container">
+    <div class="scoreboard">
+      <app-scoreboard
+        id="score"
+        [results]="this.results"
+        [outcome]="this.outcome"
+        [name]="this.name"
+      ></app-scoreboard>
+    </div>
+    <div class="game">
+      <app-game
+        id="game"
+        (gameResults)="sendResults($event.results, $event.outcome)"
+      ></app-game>
+    </div>
   </div>
 </div>
