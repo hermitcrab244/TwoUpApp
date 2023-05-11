@@ -1,4 +1,10 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 @Component({
   selector: 'app-scoreboard',
@@ -9,16 +15,16 @@ export class ScoreboardComponent implements OnChanges {
   @Input() results: string = '';
   @Input() outcome: string = '';
   @Input() name: string = '';
+  @Output() sendScore = new EventEmitter<number>();
 
-  Score = 0;
-  Choice = '';
+  score = 0;
   headsCount = 0;
   tailsCount = 0;
   oddsCount = 0;
 
   ngOnChanges() {
     if (this.outcome === 'win') {
-      this.Score++;
+      this.score++;
     }
 
     switch (this.results) {
@@ -37,5 +43,6 @@ export class ScoreboardComponent implements OnChanges {
       default:
         break;
     }
+    this.sendScore.emit(this.score);
   }
 }

@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Output,
-  EventEmitter,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { StartDialogBoxComponent } from '../../components/start-dialog-box/start-dialog-box.component';
 import { FormGroup } from '@angular/forms';
@@ -23,6 +17,7 @@ export class MainPageComponent implements OnInit {
   outcome!: string;
   name!: string;
   themeSelect!: string;
+  score!: number;
 
   ngOnInit() {
     this.dialogRef = this.dialog.open(StartDialogBoxComponent);
@@ -37,5 +32,18 @@ export class MainPageComponent implements OnInit {
   sendResults(results: string, outcome: string) {
     this.results = results;
     this.outcome = outcome;
+  }
+
+  sendScore(score: number) {
+    this.score = score;
+  }
+
+  endGame() {
+    console.log('Thank you for playing ' + this.name);
+    console.log('Your score was: ' + this.score);
+
+    setTimeout(() => {
+      window.close();
+    }, 2000);
   }
 }

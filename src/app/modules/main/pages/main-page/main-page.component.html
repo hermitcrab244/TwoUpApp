@@ -8,7 +8,7 @@
   }"
 >
   <div class="spacer">
-    <button mat-fab extended>
+    <button mat-fab extended (click)="endGame()">
       <mat-icon>logout</mat-icon>
       End Game
     </button>
@@ -24,6 +24,7 @@
         [results]="this.results"
         [outcome]="this.outcome"
         [name]="this.name"
+        (sendScore)="sendScore($event)"
       ></app-scoreboard>
     </div>
     <div class="game">

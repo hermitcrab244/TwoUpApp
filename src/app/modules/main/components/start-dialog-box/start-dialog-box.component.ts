@@ -8,8 +8,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./start-dialog-box.component.scss'],
 })
 export class StartDialogBoxComponent implements OnInit {
-  // @Output() playerName = new EventEmitter<string>();
-
   form: FormGroup;
   name!: string;
 

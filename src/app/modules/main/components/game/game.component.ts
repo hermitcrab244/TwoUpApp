@@ -101,7 +101,6 @@ export class GameComponent implements OnInit {
   }
 
   sendResults(results: string, outcome: string) {
-    console.log('This works');
     this.gameResults.emit({ results: results, outcome: outcome });
   }
 
