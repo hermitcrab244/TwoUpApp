@@ -9,7 +9,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit {
-  dialogRef!: MatDialogRef<StartDialogBoxComponent>;
+  startDialogRef!: MatDialogRef<StartDialogBoxComponent>;
 
   constructor(public dialog: MatDialog) {}
 
@@ -20,9 +20,9 @@ export class MainPageComponent implements OnInit {
   score!: number;
 
   ngOnInit() {
-    this.dialogRef = this.dialog.open(StartDialogBoxComponent);
+    this.startDialogRef = this.dialog.open(StartDialogBoxComponent);
 
-    this.dialogRef.afterClosed().subscribe((result: FormGroup) => {
+    this.startDialogRef.afterClosed().subscribe((result: FormGroup) => {
       this.name = result.get('name')?.value;
       this.themeSelect = result.get('theme')?.value;
       console.log(this.themeSelect);
@@ -39,11 +39,7 @@ export class MainPageComponent implements OnInit {
   }
 
   endGame() {
-    console.log('Thank you for playing ' + this.name);
-    console.log('Your score was: ' + this.score);
-
-    setTimeout(() => {
-      window.close();
-    }, 2000);
+    console.log(this.name);
+    console.log(this.score);
   }
 }
