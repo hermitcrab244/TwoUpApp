@@ -1,3 +1,4 @@
+<!--Angular Material Card that displays the coin images and the buttons -->
 <mat-card class="display-card">
   <mat-card-header> </mat-card-header>
   <mat-card-content id="game-screen">
@@ -8,6 +9,7 @@
         >
       </p>
     </div>
+    <!--Displays the two coin images and adds animation to the coins-->
     <div id="coin-images">
       <img
         [src]="coin1"
@@ -22,6 +24,7 @@
     </div>
     <div class="button-container">
       <div id="selection-buttons">
+        <!--Displays the two buttons. These buttons are labeled heads and tails. Used to make selection-->
         <button
           mat-raised-button
           id="select-heads"
@@ -40,6 +43,7 @@
         </button>
       </div>
       <div id="flip-button">
+        <!--Diplays button that toss the coins adn runs the game-->
         <button
           mat-raised-button
           (click)="playRound()"

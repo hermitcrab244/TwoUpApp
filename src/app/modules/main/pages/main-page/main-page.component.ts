@@ -14,6 +14,7 @@ export class MainPageComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {}
 
+  //Sets types  of all variables used within game
   results!: string;
   outcome!: string;
   name!: string;
@@ -21,25 +22,29 @@ export class MainPageComponent implements OnInit {
   score!: number;
 
   ngOnInit() {
+    //On page load displays dialog box
+    //On close gets results from form
     this.startDialogRef = this.dialog.open(StartDialogBoxComponent);
 
     this.startDialogRef.afterClosed().subscribe((result: FormGroup) => {
       this.name = result.get('name')?.value;
       this.themeSelect = result.get('theme')?.value;
-      console.log(this.themeSelect);
     });
   }
 
   sendResults(results: string, outcome: string) {
+    //Gets results from page component
     this.results = results;
     this.outcome = outcome;
   }
 
   sendScore(score: number) {
+    //Gets the score from the scoreboard
     this.score = score;
   }
 
   writeFile() {
+    //Writes score and player name to text file
     const fileText =
       'Thank you ' +
       this.name +
@@ -50,8 +55,7 @@ export class MainPageComponent implements OnInit {
   }
 
   endGame() {
-    console.log('Thank you for playing ' + this.name);
-    console.log('Your score was: ' + this.score);
+    //Calls method to record results from round
     this.writeFile();
   }
 }

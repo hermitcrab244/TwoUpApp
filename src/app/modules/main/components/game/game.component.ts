@@ -13,22 +13,27 @@ export class GameComponent implements OnInit {
   heads = 'Heads';
   tails = 'Tails';
 
-  coinHeads = '../../../../../assets/images/20c-heads.png';
-  coinTails = '../../../../../assets/images/20c-tails.png';
+  coinHeads = '../../../../../assets/images/20c-heads.png'; //Sets path to heads image
+  coinTails = '../../../../../assets/images/20c-tails.png'; //Sets path to tails image
+
+  //Sets inital image
   coin1 = this.coinHeads;
   coin2 = this.coinTails;
+
   playerChoice = '';
   gameMessage = '';
   isAnimating = false;
   tossDisabled: boolean = true;
   selectDisabled: boolean = false;
 
+  //Sets output that emits the events of the game
   @Output() gameResults = new EventEmitter<{
     results: string;
     outcome: string;
   }>();
 
   playerSelected(choice: string) {
+    //Displays player choice on screen and progresses game
     this.playerChoice = choice;
     this.gameMessage = 'You guessed ' + this.playerChoice;
     this.tossDisabled = false;
@@ -51,13 +56,17 @@ export class GameComponent implements OnInit {
       results = 'tailsOdds';
     }
 
+    //Runs coins animation
     this.flipAnimation();
 
+    //Waits for animation to
     setTimeout(() => {}, 6000);
 
     setTimeout(() => {
+      //Calls method to run
       this.flipCoins(results);
 
+      //Sets results message
       if (results === this.playerChoice) {
         this.gameMessage = 'Flip was ' + results + ', you guessed correct!';
         outcome = 'win';
@@ -69,11 +78,13 @@ export class GameComponent implements OnInit {
         outcome = 'lose';
       }
 
+      //Calls method to send results
       this.sendResults(results, outcome);
     }, 2000);
   }
 
   flipCoins(results: string) {
+    //Sets coins faces based upon results of the randomization
     switch (results) {
       case 'Heads':
         this.coin1 = this.coinHeads;
@@ -95,15 +106,18 @@ export class GameComponent implements OnInit {
         break;
     }
 
+    //Progresses game
     this.tossDisabled = true;
     this.selectDisabled = false;
   }
 
   sendResults(results: string, outcome: string) {
+    //Emits the results of the game
     this.gameResults.emit({ results: results, outcome: outcome });
   }
 
   flipAnimation() {
+    //Animates coin toss
     this.isAnimating = true;
     setTimeout(() => {
       this.isAnimating = false;

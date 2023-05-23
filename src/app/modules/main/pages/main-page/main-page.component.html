@@ -1,3 +1,5 @@
+<!--Main page that displays componenets on the screen-->
+<!--ngClass sets page theme based on user selection-->
 <div
   [ngClass]="{
     light: themeSelect === 'light',
@@ -7,6 +9,7 @@
     blue: themeSelect === 'blue'
   }"
 >
+  <!--Displays button on page used to end game-->
   <div class="spacer">
     <button mat-fab extended (click)="endGame()">
       <mat-icon>logout</mat-icon>
@@ -14,11 +17,13 @@
     </button>
   </div>
 
+  <!--Displays game title-->
   <div>
     <h1 id="title">Two-up Game</h1>
   </div>
   <div class="container">
     <div class="scoreboard">
+      <!--Displays scoreboard-->
       <app-scoreboard
         id="score"
         [results]="this.results"
@@ -28,6 +33,7 @@
       ></app-scoreboard>
     </div>
     <div class="game">
+      <!--Displays game -->
       <app-game
         id="game"
         (gameResults)="sendResults($event.results, $event.outcome)"

@@ -15,6 +15,7 @@ export class StartDialogBoxComponent implements OnInit {
     public dialogRef: MatDialogRef<StartDialogBoxComponent>,
     private formBuilder: FormBuilder
   ) {
+    //Builds form and sets fields as required
     this.form = formBuilder.group({
       name: ['', [Validators.required]],
       theme: ['', [Validators.required]],
@@ -24,10 +25,8 @@ export class StartDialogBoxComponent implements OnInit {
   ngOnInit(): void {}
 
   onPlay() {
+    //Submits form if both fields are populated
     if (this.form.valid) {
-      this.name = this.form.get('name')?.value;
-
-      console.log('Dialog check: ' + this.name);
       this.dialogRef.close(this.form);
     }
   }
