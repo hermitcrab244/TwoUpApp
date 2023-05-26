@@ -56,7 +56,6 @@ describe('GameComponent', () => {
   });
 
   it('should play a round and emit game results', () => {
-    // Set up initial conditions
     component.playerChoice = 'Heads';
     component.coin1 = 'Heads';
     component.coin2 = 'Tails';
@@ -64,23 +63,18 @@ describe('GameComponent', () => {
     component.tossDisabled = true;
     component.selectDisabled = false;
 
-    // Subscribe to the gameResults event emitter
     let emittedResults: any;
     component.gameResults.subscribe((results: any) => {
       emittedResults = results;
 
-      // Call the playRound method
       component.playRound();
 
-      // Verify the expected changes
       expect(component.isAnimating).toBe(true);
       expect(component.tossDisabled).toBe(true);
       expect(component.selectDisabled).toBe(false);
 
-      // Advance time to simulate the coin toss animation
       jasmine.clock().tick(2000);
 
-      // Verify the coin flip results and game message
       component.flipCoins('headsOdds');
       expect(component.coin1).toBe(
         '../../../../../assets/images/20c-heads.png'
@@ -90,20 +84,16 @@ describe('GameComponent', () => {
       );
       expect(component.gameMessage).toBe('Flip was Odd, try again!');
 
-      // Advance time to simulate the delay after the coin flip
       jasmine.clock().tick(2000);
 
-      //Verify the emitted game results
       expect(emittedResults.results).toBe('headsOdds');
       expect(emittedResults.outcome).toBe('');
     });
   });
   it('should flip the coins and enable select buttons', () => {
-    // Set up initial conditions
     component.tossDisabled = true;
     component.selectDisabled = false;
 
-    // Call the flipCoins method with different results
     component.flipCoins('Heads');
     expect(component.coin1).toBe('../../../../../assets/images/20c-heads.png');
     expect(component.coin2).toBe('../../../../../assets/images/20c-heads.png');
